@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page {
+  background-color: #121212;
+}
+
+.form-box {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input.form-control {
+  background-color: #ccc;
+  padding: 10px;
+}
+.w-35 {
+  width: 35%;
+}
+.soft-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: white;
+}
+.fullscreen-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 66px);
+}
+.card-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.card {
+  width: 49%;
+}
