@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 
 function EditPage() {
   return (
-    <div className="page min-vh-100 pt-5">
+    <div className="page min-vh-100">
       <NavBar />
       <EditTask />
     </div>

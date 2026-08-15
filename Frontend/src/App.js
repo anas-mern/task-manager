@@ -5,15 +5,15 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./context/auth";
 import PrivateRouter from "./routes/PrivateRouter";
-import './index.css'
+import "./index.css";
 function App() {
   return (
     <AuthProvider>
       <div className="App">
         <Routes>
           <Route path="/" element={<PrivateRouter />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/:id" element={<EditPage />} />
+            <Route index element={<HomePage />} />
+            <Route path=":id" element={<EditPage />} />
           </Route>
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />

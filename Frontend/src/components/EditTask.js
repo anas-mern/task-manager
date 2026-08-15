@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import { apiv1 } from "../constants/constants";
 
 function EditTask() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ function EditTask() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/tasks/${id}`, {
+      .get(`${apiv1}/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setTask(res.data.data))
@@ -24,7 +25,7 @@ function EditTask() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .patch(`http://localhost:5000/api/v1/tasks/${id}`, task, {
+      .patch(`${apiv1}/tasks/${id}`, task, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => navigate("/"))
@@ -33,7 +34,7 @@ function EditTask() {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="bg-dark w-50 m-auto p-3 text-white form-box"
+      className="bg-dark w-50 m-auto p-3 text-white form-box mt-5"
     >
       <h1>Task Manager</h1>
       <Form.Group>

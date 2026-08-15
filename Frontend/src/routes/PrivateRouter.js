@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import RedirectPage from "../pages/RedirectPage";
+import { apiv1 } from "../constants/constants";
 
 export default function PrivateRouter() {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   const [authorized, setAuthorized] = useState(null); // null: loading
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/tasks", {
+        const response = await axios.get(`${apiv1}/tasks`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -27,9 +28,5 @@ export default function PrivateRouter() {
 
     checkAuth();
   }, [token]);
-  return authorized ? (
-    <Outlet />
-  ) : (
-    <RedirectPage />
-  );
+  return authorized ? <Outlet /> : <RedirectPage />;
 }

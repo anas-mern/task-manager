@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
+import { apiv1 } from "../constants/constants";
 
 export default function AuthForm(props) {
   const [msg, setMsg] = useState("");
@@ -38,8 +39,8 @@ export default function AuthForm(props) {
       if (username) body.username = username;
 
       const res = await axios.post(
-        `http://localhost:5000/api/v1/auth/${props.type.toLowerCase()}`,
-        body
+        `${apiv1}/auth/${props.type.toLowerCase()}`,
+        body,
       );
 
       const newAuth = { user: res.data.user, token: res.data.token };
@@ -64,8 +65,8 @@ export default function AuthForm(props) {
   };
 
   return (
-    <div className="fullscreen-center">
-      <div className="soft-shadow w-50">
+    <div className="page fullscreen-center min-vh-100">
+      <div className="bg-dark w-50 m-auto p-3 text-white form-box">
         <h1 className="text-center mb-4">{props.type}</h1>
         <Form onSubmit={submit}>
           {props.type === "Register" ? (
@@ -75,6 +76,8 @@ export default function AuthForm(props) {
                 type="text"
                 value={username}
                 required
+                autoComplete="false"
+                placeholder="Enter Your Username"
                 onChange={(e) => setUsername(e.target.value)}
               ></Form.Control>
             </Form.Group>
@@ -88,6 +91,8 @@ export default function AuthForm(props) {
               type="email"
               value={email}
               required
+              placeholder="Enter Your Email"
+              autoComplete="false"
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -98,6 +103,8 @@ export default function AuthForm(props) {
               type="password"
               value={password}
               required
+              placeholder="Enter Your Password"
+              autoComplete="false"
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>

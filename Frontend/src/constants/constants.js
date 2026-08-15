@@ -1,0 +1,1 @@
+export const apiv1 = 'https://task-manager-backend-8u1u.onrender.com/api/v1'

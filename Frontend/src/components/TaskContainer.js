@@ -4,6 +4,7 @@ import TaskCard from "./TaskCard";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { TaskContext } from "../context/TasksContext";
+import { apiv1 } from "../constants/constants";
 
 function TaskContainer() {
   const { tasks, setTasks } = useContext(TaskContext);
@@ -11,18 +12,18 @@ function TaskContainer() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/tasks", {
+      .get(`${apiv1}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setTasks(res.data.data));
-  }, [token,setTasks]);
+  }, [token, setTasks]);
 
   const onEdit = (id) => {
     navigate(`/${id}`);
   };
   const onDel = (id) => {
     axios
-      .delete(`http://localhost:5000/api/v1/tasks/${id}`, {
+      .delete(`${apiv1}/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => setTasks(tasks.filter((t) => t._id !== id)));
@@ -30,11 +31,15 @@ function TaskContainer() {
   const onChecked = (id) => {
     const theTask = tasks.filter((t) => t._id === id);
     axios
-      .patch(`http://localhost:5000/api/v1/tasks/${id}`, {
-        completed: !theTask.completed,
-      } , {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .patch(
+        `${apiv1}/tasks/${id}`,
+        {
+          completed: !theTask.completed,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then(() =>
         setTasks((prev) =>
           prev.map((task) =>

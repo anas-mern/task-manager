@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'

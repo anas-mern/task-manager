@@ -2,7 +2,7 @@
   "name": "fr",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anas-mern-github.github.io/task-manager",
+  "homepage": "https://anas-mern.github.io/task-manager",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",

@@ -2,14 +2,15 @@ import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { TaskContext } from "../context/TasksContext";
+import { apiv1 } from "../constants/constants";
 function AddTask() {
   const [task, setTask] = useState({ title: "", priority: "" });
   const { setTasks } = useContext(TaskContext);
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/v1/tasks", task, {
+      .post(`${apiv1}/tasks`, task, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setTasks((prev) => [...(prev || []), res.data.data]))
